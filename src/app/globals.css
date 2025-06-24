@@ -82,8 +82,10 @@
   --color-title: #393a3c;
   --color-text: #6d6f73;
   --color-text-input: #9c9c9c;
+  --color-text-delivery-free: #027a7a;
   --color-brand: #00a296;
   --color-success: #02a117;
+  --color-background-card-product: #f5f6f9;
 }
 
 .dark {
