@@ -1,18 +1,20 @@
 'use client';
 
-import { MapPin, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export function Header() {
   return (
     <header className='flex items-center justify-between px-4 py-3 bg-primary'>
-      <Image
-        src='/svg/iconRoxo.svg'
-        alt='Logo aiqFome'
-        width={32}
-        height={32}
-      />
+      <Link href='/'>
+        <Image
+          src='/svg/iconRoxo.svg'
+          alt='Logo aiqFome'
+          width={32}
+          height={32}
+          className='cursor-pointer'
+        />
+      </Link>
       <div className='flex gap-[10px]'>
         <Image
           src='/svg/iconLocationDefault.svg'
