@@ -1,4 +1,5 @@
 import { Banner } from '@/components/Banner/Banner';
+import { CardEstablishments } from '@/components/CardEstablishments/CardEstablishments';
 import { Header } from '@/components/Header/Header';
 import { Search } from '@/components/Search/Search';
 
@@ -7,8 +8,44 @@ export default function Home() {
     <main className='min-h-screen bg-background'>
       <Search />
       <Banner />
-      <div className='px-4 py-6'>
-        <h1 className='text-xl font-bold text-primary'>abertos</h1>
+      <div className='flex flex-col not-only-of-type:px-4 py-6 gap-3'>
+        <div className='flex flex-col gap-4'>
+          <h1 className='text-xl font-bold text-primary'>abertos</h1>
+
+          <CardEstablishments
+            image='/png/companies/matsuriConcept.png'
+            title='Matsuri Concept'
+            shipping='R$6,00'
+            rating={4.7}
+            isOpen={true}
+          />
+
+          <CardEstablishments
+            image='/png/companies/matsuriConcept.png'
+            title='Matsuri Concept'
+            freeShipping={true}
+            rating={4.7}
+            isOpen={true}
+          />
+        </div>
+        <div className='flex flex-col gap-4'>
+          <h1 className='text-xl font-bold text-primary'>fechados</h1>
+
+          <CardEstablishments
+            image='/png/companies/matsuriConcept.png'
+            title='Matsuri Concept'
+            rating={4.7}
+            isOpen={false}
+          />
+          <CardEstablishments
+            image='/png/companies/matsuriConcept.png'
+            title='Matsuri Concept'
+            shipping='R$6,00'
+            freeShipping={true}
+            rating={4.7}
+            isOpen={false}
+          />
+        </div>
       </div>
     </main>
   );
