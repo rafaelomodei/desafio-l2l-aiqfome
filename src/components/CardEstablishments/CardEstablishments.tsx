@@ -9,9 +9,9 @@ import { CardInfoPrice } from '../CardInfoPrice/CardInfoPrice';
 export function CardEstablishments(props: CardEstablishmentsProps) {
   const {
     image,
-    title,
-    shipping,
-    freeShipping,
+    name,
+    deliveryPrice,
+    deliveryFee,
     rating,
     isOpen,
     outsourcedMotorcycle,
@@ -26,7 +26,7 @@ export function CardEstablishments(props: CardEstablishmentsProps) {
       <div className='relative w-18 h-18 shrink-0 rounded overflow-hidden'>
         <Image
           src={image}
-          alt={`Imagem do restaurante ${title}`}
+          alt={`Imagem do restaurante ${name}`}
           fill
           className={cn('object-cover', !isOpen && 'opacity-50')}
         />
@@ -34,13 +34,13 @@ export function CardEstablishments(props: CardEstablishmentsProps) {
 
       <CardContent className='p-0 flex flex-col justify-center w-full'>
         <h3 className='text-[color:var(--color-title)] font-bold text-md truncate'>
-          {title}
+          {name}
         </h3>
 
         <CardInfoPrice
-          freeShipping={Boolean(freeShipping)}
+          deliveryFee={Boolean(deliveryFee)}
           rating={rating}
-          shippingValue={shipping}
+          deliveryPrice={deliveryPrice}
           outsourcedMotorcycle={outsourcedMotorcycle}
         />
       </CardContent>

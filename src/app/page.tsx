@@ -14,16 +14,26 @@ export default function Home() {
 
           <CardEstablishments
             image='/png/companies/matsuriConcept.png'
-            title='Matsuri Concept'
-            shipping='R$6,00'
+            name='Matsuri Concept'
+            deliveryPrice={6}
             rating={4.7}
             isOpen={true}
           />
 
           <CardEstablishments
             image='/png/companies/matsuriConcept.png'
-            title='Matsuri Concept'
-            freeShipping={true}
+            name='Matsuri Concept'
+            deliveryFee={true}
+            deliveryPrice={6}
+            rating={4.7}
+            isOpen={true}
+          />
+
+          <CardEstablishments
+            image='/png/companies/matsuriConcept.png'
+            name='Matsuri Concept'
+            outsourcedMotorcycle
+            deliveryPrice={6}
             rating={4.7}
             isOpen={true}
           />
@@ -33,15 +43,16 @@ export default function Home() {
 
           <CardEstablishments
             image='/png/companies/matsuriConcept.png'
-            title='Matsuri Concept'
+            name='Matsuri Concept'
+            deliveryPrice={6}
             rating={4.7}
             isOpen={false}
           />
           <CardEstablishments
             image='/png/companies/matsuriConcept.png'
-            title='Matsuri Concept'
-            shipping='R$6,00'
-            freeShipping={true}
+            name='Matsuri Concept'
+            deliveryPrice={6}
+            deliveryFee={true}
             rating={4.7}
             isOpen={false}
           />

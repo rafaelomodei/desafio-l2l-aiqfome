@@ -1,8 +1,8 @@
 export interface CardEstablishmentsProps {
   image: string;
-  title: string;
-  shipping?: string;
-  freeShipping?: boolean;
+  name: string;
+  deliveryPrice: number;
+  deliveryFee?: boolean;
   outsourcedMotorcycle?: boolean;
   rating: number;
   isOpen: boolean;

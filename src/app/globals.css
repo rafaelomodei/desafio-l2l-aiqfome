@@ -78,11 +78,10 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   --color-primary: #7b1fa2;
-  --color-free: #027a7a;
-  --color-title: #393a3c;
   --color-text: #6d6f73;
   --color-text-input: #9c9c9c;
-  --color-text-delivery-free: #027a7a;
+  --color-text-footer: #580f78;
+  --color-text-verde-agua: #027a7a;
   --color-brand: #00a296;
   --color-success: #02a117;
   --color-background-card-product: #f5f6f9;
