@@ -2,15 +2,16 @@
 
 import Image from 'next/image';
 import { CardInfoPriceProps } from './interface';
+import { Star } from '../Star/Star';
 
 export function CardInfoPrice({
-  freeShipping,
-  shippingValue,
+  deliveryFee,
+  deliveryPrice,
   outsourcedMotorcycle,
   rating,
 }: CardInfoPriceProps) {
   const handleShipping = () => {
-    if (freeShipping)
+    if (deliveryFee)
       return (
         <>
           <Image
@@ -19,11 +20,11 @@ export function CardInfoPrice({
             height={24}
             alt='Ícone entrega grátis'
           />
-          <p className='text-[color:var(--color-text-delivery-free)]'>grátis</p>
+          <p className='text-[color:var(--color-text-verde-agua)]'>grátis</p>
         </>
       );
 
-    if (shippingValue && outsourcedMotorcycle)
+    if (deliveryPrice && outsourcedMotorcycle)
       return (
         <>
           <Image
@@ -32,7 +33,11 @@ export function CardInfoPrice({
             height={24}
             alt='Ícone entrega paga'
           />
-          {shippingValue && <p className='text-primary'>{shippingValue}</p>}
+          {deliveryPrice && (
+            <p className='flex min-w-max text-primary'>
+              R$ {deliveryPrice.toFixed(2)}
+            </p>
+          )}
         </>
       );
 
@@ -44,7 +49,11 @@ export function CardInfoPrice({
           height={24}
           alt='Ícone motoboy entrega paga'
         />
-        {shippingValue && <p className='text-primary'>{shippingValue}</p>}
+        {deliveryPrice && (
+          <p className='flex min-w-max text-primary'>
+            R$ {deliveryPrice.toFixed(2)}
+          </p>
+        )}
       </>
     );
   };
@@ -52,15 +61,7 @@ export function CardInfoPrice({
   return (
     <div className='flex max-w-min items-center gap-1 text-xs font-bold'>
       {handleShipping()}
-      <div className='flex items-center gap-1 text-muted-foreground ml-auto'>
-        <Image
-          src='/svg/iconStar.svg'
-          width={24}
-          height={24}
-          alt='Ícone estrela'
-        />
-        <p>{rating}</p>
-      </div>
+      <Star rating={rating} />
     </div>
   );
 }

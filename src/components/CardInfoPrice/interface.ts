@@ -1,6 +1,6 @@
 export interface CardInfoPriceProps {
-  freeShipping: boolean;
+  deliveryFee: boolean;
   outsourcedMotorcycle?: boolean;
-  shippingValue?: string;
+  deliveryPrice: number;
   rating: number;
 }
