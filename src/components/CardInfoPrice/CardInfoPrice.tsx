@@ -59,9 +59,9 @@ export function CardInfoPrice({
   };
 
   return (
-    <div className='flex max-w-min items-center gap-1 text-xs font-bold'>
+    <div className='flex w-fit items-center gap-1 text-xs font-bold'>
       {handleShipping()}
-      <Star rating={rating} />
+      {rating && <Star rating={rating} />}
     </div>
   );
 }

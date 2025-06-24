@@ -1,7 +1,7 @@
-interface EstablishmentProps {
+interface Establishment {
   id: string;
   name: string;
-  logoUrl: string;
+  image: string;
   rating: number;
   deliveryPrice: number;
   deliveryFee: boolean;

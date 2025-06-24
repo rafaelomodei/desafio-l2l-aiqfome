@@ -33,9 +33,7 @@ export function CardEstablishments(props: CardEstablishmentsProps) {
       </div>
 
       <CardContent className='p-0 flex flex-col justify-center w-full'>
-        <h3 className='text-[color:var(--color-title)] font-bold text-md truncate'>
-          {name}
-        </h3>
+        <h3 className='font-bold text-md truncate'>{name}</h3>
 
         <CardInfoPrice
           deliveryFee={Boolean(deliveryFee)}

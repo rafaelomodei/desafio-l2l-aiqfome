@@ -79,11 +79,13 @@
 
   --color-primary: #7b1fa2;
   --color-text: #6d6f73;
+  --color-text-title-Establishment: #202326;
   --color-text-input: #9c9c9c;
   --color-text-footer: #580f78;
   --color-text-verde-agua: #027a7a;
   --color-brand: #00a296;
   --color-success: #02a117;
+  --color-error: #a10202;
   --color-background-card-product: #f5f6f9;
 }
 

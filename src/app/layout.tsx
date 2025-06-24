@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
+import { EstablishmentProvider } from '@/contexts/EstablishmentContext/EstablishmentContext';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -22,10 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-BR' className=''>
-      <Header />
-
-      <body className={`${nunito.variable} antialiased`}>{children}</body>
-      <Footer />
+      <EstablishmentProvider>
+        <Header />
+        <body className={`${nunito.variable} antialiased`}>{children}</body>
+        <Footer />
+      </EstablishmentProvider>
     </html>
   );
 }

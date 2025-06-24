@@ -5,7 +5,7 @@ export function Star(props: StarProps) {
   const { rating, showTotal = false } = props;
 
   return (
-    <div className='flex items-center gap-1 text-muted-foreground ml-auto'>
+    <div className='flex items-center gap-1 text-[color:var(--color-text)]'>
       <Image
         src='/svg/iconStar.svg'
         width={24}
