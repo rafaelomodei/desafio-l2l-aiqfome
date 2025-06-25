@@ -1,20 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
+import { formatPrice } from '@/lib/utils/currency';
+import Link from 'next/link';
+import { CategoryProductsAccordionProps } from './interface';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-
-import type { Category } from '@/types/Category';
-import type { Product } from '@/types/Product';
-import { formatPrice } from '@/lib/utils/currency';
-
-interface CategoryProductsAccordionProps {
-  categories: Category[];
-  products: Product[];
-}
+import ProductList from '../ProductList/ProductList';
 
 const CategoryProductsAccordion = (props: CategoryProductsAccordionProps) => {
   const { categories, products } = props;
@@ -29,38 +24,27 @@ const CategoryProductsAccordion = (props: CategoryProductsAccordionProps) => {
         if (categoryProducts.length === 0) return null;
 
         return (
-          <AccordionItem key={category.id} value={category.id}>
-            <AccordionTrigger>{category.name}</AccordionTrigger>
+          <AccordionItem
+            key={category.id}
+            value={category.id}
+            className='border-b-4'
+          >
+            <AccordionTrigger className=' font-semibold text-[color:var(--color-text-title)]'>
+              <div className='flex items-center gap-1'>
+                {category.name}
+                {category.hasPromotion && (
+                  <Image
+                    src='/svg/iconMoney.svg'
+                    alt='Ícon representando moeda'
+                    width={24}
+                    height={24}
+                  />
+                )}
+              </div>
+            </AccordionTrigger>
 
             <AccordionContent>
-              <ul className='flex flex-col gap-4'>
-                {categoryProducts.map((product) => (
-                  <li key={product.id}>
-                    <button className='flex w-full items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-muted/50'>
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={64}
-                        height={64}
-                        className='h-16 w-16 flex-none rounded-md object-cover'
-                      />
-
-                      <div className='flex flex-1 flex-col text-left'>
-                        <span className='font-medium'>{product.name}</span>
-                        {product.description && (
-                          <span className='text-sm text-muted-foreground line-clamp-2'>
-                            {product.description}
-                          </span>
-                        )}
-                      </div>
-
-                      <span className='whitespace-nowrap font-semibold'>
-                        {formatPrice(product.price)}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
+              <ProductList products={products} />
             </AccordionContent>
           </AccordionItem>
         );

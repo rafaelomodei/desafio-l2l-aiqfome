@@ -4,12 +4,9 @@ import Image from 'next/image';
 import { CardInfoPriceProps } from './interface';
 import { Star } from '../Star/Star';
 
-export function CardInfoPrice({
-  deliveryFee,
-  deliveryPrice,
-  outsourcedMotorcycle,
-  rating,
-}: CardInfoPriceProps) {
+export function CardInfoPrice(props: CardInfoPriceProps) {
+  const { deliveryFee, deliveryPrice, outsourcedMotorcycle, rating } = props;
+
   const handleShipping = () => {
     if (deliveryFee)
       return (

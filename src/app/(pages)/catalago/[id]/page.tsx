@@ -42,7 +42,7 @@ export default async function EstablishmentMenu({
               height={36}
             />
           </div>
-          <h3 className='font-bold text-xl truncate text-[color:var(--color-text-title-Establishment)] '>
+          <h3 className='font-bold text-xl truncate text-[color:var(--color-text-title)] '>
             {name}
           </h3>
         </div>
