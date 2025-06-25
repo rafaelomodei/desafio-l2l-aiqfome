@@ -1,21 +1,22 @@
-'use client';
-
 import { CardInfoPrice } from '@/components/CardInfoPrice/CardInfoPrice';
 import { Star } from '@/components/Star/Star';
 import { Button } from '@/components/ui/button';
-import { useEstablishments } from '@/hooks/useEstablishment/useEstablishment';
-import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
+import CategoryProductsAccordion from '@/components/CategoryProductsAccordion/CategoryProductsAccordion';
+import { notFound } from 'next/navigation';
+import { getEstablishment } from '@/lib/services/establishment';
 
-export default function EstablishmentMenu() {
-  const { getById } = useEstablishments();
-  const { id } = useParams<{ id: string }>();
+export default async function EstablishmentMenu({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = await params;
+  const data = await getEstablishment(id);
+  if (!data) notFound();
 
-  const establishment = getById(id);
-
-  if (!establishment) return null;
-
+  const { establishment, categories, products } = data;
   const {
     name,
     image,
@@ -29,7 +30,6 @@ export default function EstablishmentMenu() {
     outsourcedMotorcycle,
     estimatedDeliveryTime,
   } = establishment;
-
   return (
     <main className='flex flex-col gap-1 min-h-screen bg-background px-4 py-6 text-[color:var(--color-text)]'>
       <div className='flex gap-2 pb-2 items-center'>
@@ -116,6 +116,12 @@ export default function EstablishmentMenu() {
           pedido mínimo: R$ {minOrderValue.toFixed(2)}
         </p>
       )}
+      {/* <div>
+        <CategoryProductsAccordion
+          categories={mockCategories}
+          products={mockProducts}
+        />
+      </div> */}
     </main>
   );
 }

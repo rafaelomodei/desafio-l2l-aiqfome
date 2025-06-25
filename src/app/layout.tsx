@@ -23,11 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-BR' className=''>
-      <EstablishmentProvider>
+      <body className={`${nunito.variable} antialiased`}>
         <Header />
-        <body className={`${nunito.variable} antialiased`}>{children}</body>
+        {children}
         <Footer />
-      </EstablishmentProvider>
+      </body>
     </html>
   );
 }

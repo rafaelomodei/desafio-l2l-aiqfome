@@ -1,18 +1,11 @@
-'use client';
-
 import { Banner } from '@/components/Banner/Banner';
 import { CardEstablishments } from '@/components/CardEstablishments/CardEstablishments';
 import { Search } from '@/components/Search/Search';
-import { useEstablishments } from '@/hooks/useEstablishment/useEstablishment';
-import { useRouter } from 'next/navigation';
+import { listEstablishments } from '@/lib/services/establishment';
+import Link from 'next/link';
 
-export default function Home() {
-  const { establishments } = useEstablishments();
-  const router = useRouter();
-
-  const handleClick = (id: string) => {
-    router.push(`/catalago/${id}`);
-  };
+export default async function Home() {
+  const establishments = await listEstablishments();
 
   return (
     <main className='min-h-screen bg-background'>
@@ -25,9 +18,9 @@ export default function Home() {
           {establishments
             .filter((e) => e.isOpen)
             .map((e) => (
-              <div key={e.id} onClick={() => handleClick(e.id)}>
+              <Link key={e.id} href={`/catalago/${e.id}`}>
                 <CardEstablishments {...e} />
-              </div>
+              </Link>
             ))}
         </div>
         <div className='flex flex-col gap-4'>
@@ -36,9 +29,9 @@ export default function Home() {
           {establishments
             .filter((e) => !e.isOpen)
             .map((e) => (
-              <div key={e.id} onClick={() => handleClick(e.id)}>
+              <Link key={e.id} href={`/catalago/${e.id}`}>
                 <CardEstablishments {...e} />
-              </div>
+              </Link>
             ))}
         </div>
       </div>
