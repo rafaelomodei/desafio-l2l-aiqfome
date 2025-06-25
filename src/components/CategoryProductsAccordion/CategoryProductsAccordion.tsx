@@ -14,11 +14,10 @@ import { formatPrice } from '@/lib/utils/currency';
 interface CategoryProductsAccordionProps {
   categories: Category[];
   products: Product[];
-  onProductClick?: (product: Product) => void;
 }
 
 const CategoryProductsAccordion = (props: CategoryProductsAccordionProps) => {
-  const { categories, products, onProductClick } = props;
+  const { categories, products } = props;
 
   return (
     <Accordion type='single' collapsible className='w-full'>
@@ -37,10 +36,7 @@ const CategoryProductsAccordion = (props: CategoryProductsAccordionProps) => {
               <ul className='flex flex-col gap-4'>
                 {categoryProducts.map((product) => (
                   <li key={product.id}>
-                    <button
-                      onClick={() => onProductClick?.(product)}
-                      className='flex w-full items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-muted/50'
-                    >
+                    <button className='flex w-full items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-muted/50'>
                       <Image
                         src={product.image}
                         alt={product.name}

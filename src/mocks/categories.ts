@@ -1,18 +1,13 @@
-import type { Category } from '@/types/Category';
+import { Category } from '@/types/Category';
 
 export const mockCategories: Category[] = [
-  { id: 'niguiris', name: 'Niguiris', hasPromotion: true },
   {
-    id: 'cevic',
-    name: 'Ceviches',
-    description:
-      'Um prato super refrescante de peixe fatiado e marinado com limão',
+    id: 'niguiris',
+    establishmentId: '1',
+    name: 'Niguiris',
+    hasPromotion: true,
   },
-  {
-    id: 'temakis',
-    name: 'Temakis',
-    description: 'Sushi em forma de cone com salmão e cream cheese',
-  },
-  { id: 'beverages', name: 'Bebidas' },
-  { id: 'desserts', name: 'Sobremesas' },
+  { id: 'temakis', establishmentId: '1', name: 'Temakis' },
+  { id: 'sandwiches', establishmentId: '2', name: 'Sanduíches' },
+  { id: 'beverages', establishmentId: '2', name: 'Bebidas' },
 ];
