@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
+import { Providers } from '@/providers/providers';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -23,11 +24,13 @@ export default function RootLayout({
   return (
     <html lang='pt-BR' className=''>
       <body className={`${nunito.variable} antialiased `}>
-        <Header />
-        <div className='flex flex-col min-h-screen-no-nav min-h-[var(--min-custom-screen)]'>
-          {children}
-        </div>
-        <Footer />
+        <Providers>
+          <Header />
+          <div className='flex flex-col min-h-screen-no-nav min-h-[var(--min-custom-screen)]'>
+            {children}
+          </div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

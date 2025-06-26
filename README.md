@@ -2,11 +2,11 @@
 
 Este projeto foi desenvolvido como parte do processo seletivo para a vaga de **Engenheiro(a) de Software Front-End Sênior** da **L2L Aiqfome**. A aplicação simula uma interface de pedidos onde o(a) usuário(a) pode:
 
-- [] Listar produtos por categoria
-- [] Adicionar produtos ao ticket (carrinho)
+- [x] Listar produtos por categoria
+- [~] Adicionar produtos ao ticket (carrinho)
 - [] Visualizar e editar o ticket
-- [] Persistir os dados localmente no navegador
-- [] Utilizar a interface com foco total em mobile experience 📱
+- [x] Persistir os dados localmente no navegador
+- [x] Utilizar a interface com foco total em mobile experience 📱
 
 ---
 
@@ -15,8 +15,6 @@ Este projeto foi desenvolvido como parte do processo seletivo para a vaga de **E
 Tailwind CSS – utilitários de estilo rápidos e responsivos.
 
 ShadCN/UI – componentes prontos.
-
-Lucide Icons – conjunto de ícones leves.
 
 idb-keyval – armazenamento local via IndexedDB.
 
@@ -33,6 +31,9 @@ Ao invés de utilizar o `localStorage` tradicional para salvar os dados do ticke
 ## Como rodar o projeto
 
 ```bash
+# Baixe o projeto
+git clone https://github.com/rafaelomodei/desafio-l2l-aiqfome
+
 # Instalar as dependências
 pnpm install
 
