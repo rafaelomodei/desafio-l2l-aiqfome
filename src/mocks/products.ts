@@ -9,6 +9,7 @@ export const mockProducts: Product[] = [
     description: 'Kani, pepino e maçã ou manga',
     image: '/png/products/niguiri-salmao.png',
     price: 12.9,
+    priceRange: true,
     rating: 4.8,
   },
   {

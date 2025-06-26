@@ -16,12 +16,12 @@ const CategoryProductsAccordion = (props: CategoryProductsAccordionProps) => {
 
   return (
     <Accordion type='single' collapsible className='w-full'>
-      {categories.map((category) => {
-        const categoryProducts = products.filter(
+      {categories?.map((category) => {
+        const categoryProducts = products?.filter(
           (p) => p.categoryId === category.id
         );
 
-        if (categoryProducts.length === 0) return null;
+        if (categoryProducts?.length === 0) return null;
 
         return (
           <AccordionItem
@@ -44,7 +44,7 @@ const CategoryProductsAccordion = (props: CategoryProductsAccordionProps) => {
             </AccordionTrigger>
 
             <AccordionContent>
-              <ProductList products={products} />
+              {products?.length && <ProductList products={products} />}
             </AccordionContent>
           </AccordionItem>
         );

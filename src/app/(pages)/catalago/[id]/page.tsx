@@ -5,7 +5,11 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import CategoryProductsAccordion from '@/components/CategoryProductsAccordion/CategoryProductsAccordion';
 import { notFound } from 'next/navigation';
-import { getEstablishment } from '@/lib/services/establishment';
+import {
+  getCategoriesByEstablishment,
+  getEstablishment,
+  getProductsByEstablishment,
+} from '@/lib/services/establishment';
 
 export default async function EstablishmentMenu({
   params,
@@ -13,10 +17,13 @@ export default async function EstablishmentMenu({
   params: { id: string };
 }) {
   const { id } = await params;
-  const data = await getEstablishment(id);
-  if (!data) notFound();
+  const establishment = await getEstablishment(id);
 
-  const { establishment, categories, products } = data;
+  if (!establishment) notFound();
+
+  const categories = await getCategoriesByEstablishment(establishment.id);
+  const products = await getProductsByEstablishment(establishment.id);
+
   const {
     name,
     image,
@@ -30,6 +37,7 @@ export default async function EstablishmentMenu({
     outsourcedMotorcycle,
     estimatedDeliveryTime,
   } = establishment;
+
   return (
     <main className='flex justify-center bg-background px-4 py-6 text-[color:var(--color-text)]'>
       <div className='flex flex-col w-full max-w-2xl gap-1 '>

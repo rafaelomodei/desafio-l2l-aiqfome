@@ -7,12 +7,13 @@ interface ProductPriceProps {
   priceRange?: boolean;
   pricePromotion?: number;
   showRow?: boolean;
+  priceClassName?: string;
 }
 
 export function ProductPrice(props: ProductPriceProps) {
-  const { price, pricePromotion, priceRange, showRow } = props;
+  const { price, pricePromotion, priceRange, showRow, priceClassName } = props;
 
-  if (pricePromotion)
+  if (!showRow && pricePromotion)
     return (
       <div className='flex flex-col items-end'>
         <p className='flex text-sm font-semibold line-through '>
@@ -25,8 +26,38 @@ export function ProductPrice(props: ProductPriceProps) {
             width={20}
             height={20}
           />
-          <p className='flex text-lg font-semibold text-[color:var(--color-success)]'>
-            {formatPrice(price)}
+          <p
+            className={cn(
+              'flex text-lg font-semibold text-[color:var(--color-success)]',
+              priceClassName
+            )}
+          >
+            {formatPrice(pricePromotion)}
+          </p>
+        </div>
+      </div>
+    );
+
+  if (showRow && pricePromotion)
+    return (
+      <div className='flex items-center gap-1'>
+        <p className='flex text-sm font-semibold '>
+          de {formatPrice(price)} por
+        </p>
+        <div className='flex justify-center gap-1'>
+          <Image
+            src='/svg/iconMoney.svg'
+            alt='Ícon representando moeda'
+            width={20}
+            height={20}
+          />
+          <p
+            className={cn(
+              'flex text-lg font-semibold text-[color:var(--color-success)]',
+              priceClassName
+            )}
+          >
+            {formatPrice(pricePromotion)}
           </p>
         </div>
       </div>
@@ -41,14 +72,21 @@ export function ProductPrice(props: ProductPriceProps) {
         )}
       >
         <p className='font-semibold'>a partir de</p>
-        <p className='flex text-lg font-semibold text-primary'>
+        <p
+          className={cn(
+            `flex text-lg font-semibold text-primary ${priceClassName}`,
+            showRow && 'text-xl font-black'
+          )}
+        >
           {formatPrice(price)}
         </p>
       </div>
     );
 
   return (
-    <p className='flex text-lg font-semibold text-primary'>
+    <p
+      className={cn('flex text-lg font-semibold text-primary', priceClassName)}
+    >
       {formatPrice(price)}
     </p>
   );
