@@ -1,14 +1,16 @@
-import ProductIncrement from '@/components/ProductIncrement/ProductIncrement';
 import { ProductPrice } from '@/components/ProductPrice/ProductPrice';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { getProduct } from '@/lib/services/establishment';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ProductSize from './components/ProductSize';
 import Accompaniment from './components/Accompaniment';
+import ProductCount from '@/components/ProductCount/ProductCount';
+import ProductActions from './components/ProductActions';
+import Dink from './components/Dink';
+import Cutlery from './components/Cutlery';
+import AnythingElse from './components/AnythingElse';
+import ObservationTextarea from './components/OrderNoteTextarea';
+import OrderNoteTextarea from './components/OrderNoteTextarea';
 
 export default async function EstablishmentMenu({
   params,
@@ -21,17 +23,19 @@ export default async function EstablishmentMenu({
   if (!product) notFound();
 
   return (
-    <main className='flex justify-center font-semibold   text-[color:var(--color-text)]'>
+    <main className='flex justify-center font-semibold pb-[68px]  text-[color:var(--color-text)]'>
       <div className=' w-full max-w-2xl'>
-        <div className='w-full max-w-container mx-auto mt-[1px]'>
-          <Image
-            src={product.image}
-            alt="Banner promocional colorido: crianças fantasiadas com rostos de adultos seguram comida, com o texto 'rango barato no dia das crianças!' e 'peça com até 50% OFF'"
-            className='w-full h-auto cursor-pointer'
-            width={800}
-            height={150}
-          />
-        </div>
+        {product.image && (
+          <div className='w-full max-w-container mx-auto mt-[1px]'>
+            <Image
+              src={product.image}
+              alt="Banner promocional colorido: crianças fantasiadas com rostos de adultos seguram comida, com o texto 'rango barato no dia das crianças!' e 'peça com até 50% OFF'"
+              className='w-full h-auto cursor-pointer'
+              width={800}
+              height={150}
+            />
+          </div>
+        )}
         <div className='flex flex-col gap-4'>
           <div className='flex flex-col gap-2 p-4'>
             <div className='flex gap-1 items-center'>
@@ -74,13 +78,12 @@ export default async function EstablishmentMenu({
                 />
               </div>
             </div>
-            <Button
-              variant='secondary'
-              size='lg'
-              className='text-white bg-[color:var(--color-text)]!'
-            >
-              adicionar
-            </Button>
+            <ProductActions
+              productId={product.id}
+              productName={product.name}
+              establishmentId={product.establishmentId}
+              basePrice={product.price}
+            />
           </div>
           <div className='flex flex-col'></div>
 
@@ -94,10 +97,37 @@ export default async function EstablishmentMenu({
 
           <div className='border-b-4' />
 
-          <Accompaniment />
+          <Accompaniment
+            productId={product.id}
+            productName={product.name}
+            establishmentId={product.establishmentId}
+          />
 
-          <ProductIncrement />
           <div className='border-b-4' />
+
+          <Dink
+            productId={product.id}
+            establishmentId={product.establishmentId}
+          />
+
+          <div className='border-b-4' />
+
+          <Cutlery
+            productId={product.id}
+            productName={product.name}
+            establishmentId={product.establishmentId}
+          />
+
+          <div className='border-b-4' />
+          <AnythingElse
+            productId={product.id}
+            productName={product.name}
+            establishmentId={product.establishmentId}
+          />
+
+          <div className='border-b-4' />
+
+          <OrderNoteTextarea />
         </div>
       </div>
     </main>

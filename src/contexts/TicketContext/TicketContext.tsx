@@ -19,6 +19,7 @@ interface TicketContextValue extends TicketState {
   decrement(lineId: string): void;
   updateItem(item: TicketItem): void;
   removeItem(lineId: string): void;
+  setOrderNote(note: string): void;
   clear(): void;
 }
 
@@ -66,6 +67,11 @@ export function TicketProvider({ children }: { children: ReactNode }) {
     []
   );
 
+  const setOrderNote = useCallback(
+    (note: string) => dispatch({ type: 'SET_NOTE', payload: note }),
+    []
+  );
+
   const clear = useCallback(() => dispatch({ type: 'CLEAR' }), []);
 
   const value = useMemo(
@@ -76,9 +82,19 @@ export function TicketProvider({ children }: { children: ReactNode }) {
       decrement,
       updateItem,
       removeItem,
+      setOrderNote,
       clear,
     }),
-    [state, addItem, increment, decrement, updateItem, removeItem, clear]
+    [
+      state,
+      addItem,
+      increment,
+      decrement,
+      updateItem,
+      removeItem,
+      setOrderNote,
+      clear,
+    ]
   );
 
   return (

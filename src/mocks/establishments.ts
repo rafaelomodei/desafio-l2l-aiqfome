@@ -37,7 +37,7 @@ export const mockEstablishments = [
     closingTime: '22:00',
     isOpen: true,
     minOrderValue: 0,
-    outsourcedMotorcycle: true,
+    outsourcedMotorcycle: false,
     address: { point1: 'Avenida Center, 120' },
     categories: [
       { id: 'sandwiches', name: 'Sanduíches' },
@@ -57,7 +57,7 @@ export const mockEstablishments = [
     closingTime: '23:00',
     isOpen: true,
     minOrderValue: 20,
-    outsourcedMotorcycle: true,
+    outsourcedMotorcycle: false,
     address: { point1: 'Rua Colombo, 500' },
     categories: [
       { id: 'combos', name: 'Combos' },
@@ -77,7 +77,7 @@ export const mockEstablishments = [
     closingTime: '23:00',
     isOpen: true,
     minOrderValue: 0,
-    outsourcedMotorcycle: false,
+    outsourcedMotorcycle: true,
     address: { point1: 'Avenida Novo Centro, 80' },
     categories: [
       { id: 'burgers', name: 'Burgers' },

@@ -71,6 +71,9 @@ export function ticketReducer(state: TicketState, action: Action): TicketState {
       });
     }
 
+    case 'SET_NOTE':
+      return { ...state, orderNote: action.payload };
+
     case 'CLEAR':
       return { items: [], subtotal: 0 };
 

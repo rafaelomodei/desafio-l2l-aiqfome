@@ -28,6 +28,7 @@ export interface TicketItem {
 export interface TicketState {
   items: TicketItem[];
   subtotal: number;
+  orderNote?: string;
 }
 
 export type Action =
@@ -37,6 +38,7 @@ export type Action =
   | { type: 'DECREMENT'; payload: { lineId: string } }
   | { type: 'UPDATE_ITEM'; payload: TicketItem }
   | { type: 'REMOVE_ITEM'; payload: { lineId: string } }
+  | { type: 'SET_NOTE'; payload: string }
   | { type: 'CLEAR' };
 
 export const STORAGE_KEY = 'aiq.ticket.v1';

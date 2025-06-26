@@ -8,46 +8,44 @@ import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-const SIZES = [
-  { id: 'option-one', label: 'médio', price: 22.9, promo: 19.9 },
-  { id: 'option-two', label: 'grande', price: 28.9 },
+const CUTLERY = [
+  { id: 'hashi', label: 'hashi', price: 0 },
+  { id: 'garfo-faca-descartavel', label: 'garfo e faca descartável', price: 1 },
 ] as const;
 
-type Size = (typeof SIZES)[number];
+type CutleryOption = (typeof CUTLERY)[number];
 
-interface ProductSizeProps {
+interface CutleryProps {
   productId: string;
   productName: string;
   establishmentId: string;
 }
 
-export default function ProductSize({
+export default function Cutlery({
   productId,
   productName,
   establishmentId,
-}: ProductSizeProps) {
+}: CutleryProps) {
   const { addItem, removeItem } = useTicket();
-  const [selected, setSelected] = useState<Size | undefined>();
+  const [selected, setSelected] = useState<CutleryOption | undefined>();
 
   const lineIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!selected) return;
 
-    if (lineIdRef.current) {
-      removeItem(lineIdRef.current);
-    }
+    if (lineIdRef.current) removeItem(lineIdRef.current);
 
     const newLineId = addItem({
       establishmentId,
-      productId,
-      productName,
+      productId: `${productId}:cutlery`,
+      productName: `${productName} ${selected.label}`,
       basePrice: selected.price,
       qty: 1,
       options: [
         {
-          groupId: 'size',
-          groupName: 'qual o tamanho?',
+          groupId: 'cutlery',
+          groupName: 'talheres',
           choiceId: selected.id,
           choiceName: selected.label,
           extraPrice: 0,
@@ -61,17 +59,16 @@ export default function ProductSize({
 
   return (
     <div className='flex flex-col gap-4 px-4'>
-      <div className='flex justify-between items-center'>
+      <div className='flex items-center justify-between'>
         <div className='flex flex-col gap-1'>
           <p className='text-[color:var(--color-text-title)]'>
-            qual o tamanho?
+            precisa de talheres?
           </p>
           <p className='text-sm text-zinc-500'>escolha 1</p>
         </div>
-
         <Badge
           variant='secondary'
-          className='font-semibold h-8 text-white bg-[color:var(--color-text-title)] shadow-none'
+          className='h-8 bg-[color:var(--color-text-title)] font-semibold text-white shadow-none'
         >
           obrigatório
         </Badge>
@@ -80,35 +77,18 @@ export default function ProductSize({
       <RadioGroup
         value={selected?.id}
         onValueChange={(val) =>
-          setSelected(SIZES.find((s) => s.id === val) as Size)
+          setSelected(CUTLERY.find((c) => c.id === val) as CutleryOption)
         }
       >
-        <div className='flex justify-between'>
-          <div className='flex items-center gap-3'>
-            <RadioGroupItem value='option-one' id='option-one' />
-            <Image
-              src='/svg/iconMoney.svg'
-              alt='Ícone representando moeda'
-              width={20}
-              height={20}
-            />
-            <Label htmlFor='option-one'>médio</Label>
+        {CUTLERY.map((c) => (
+          <div key={c.id} className='flex items-center justify-between py-2'>
+            <div className='flex items-center gap-3'>
+              <RadioGroupItem value={c.id} id={c.id} />
+              <Label htmlFor={c.id}>{c.label}</Label>
+            </div>
+            {Boolean(c.price) && <ProductPrice price={c.price} />}
           </div>
-          <ProductPrice
-            showRow
-            price={22.9}
-            pricePromotion={19.9}
-            priceClassName=''
-          />
-        </div>
-
-        <div className='flex justify-between'>
-          <div className='flex items-center gap-3'>
-            <RadioGroupItem value='option-two' id='option-two' />
-            <Label htmlFor='option-two'>grande</Label>
-          </div>
-          <ProductPrice price={28.9} />
-        </div>
+        ))}
       </RadioGroup>
     </div>
   );
